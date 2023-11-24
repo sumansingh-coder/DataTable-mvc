@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Friends List";
+}
+
+<h2>Friends List</h2>
+
+<table id="friendsTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Postition</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Likes</th>
+        </tr>
+    </thead>
+</table>
+
+<link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" rel="stylesheet"/>
+
+@section scripts{
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js">
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#friendsTable").DataTable(
+                {
+                    "ajax": {
+                        "url": "/Friends/GetList",
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+                    "columns": [
+                        { "data": "ID" },
+                        { "data": "Name" },
+                        { "data": "Position" },
+                        { "data": "Office" },
+                        { "data": "Age" },
+                        { "data": "Likes" },
+                    ]
+
+                });
+        });
+    </script>
+}
